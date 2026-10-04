@@ -11,7 +11,11 @@ import Foundation
 public extension Bundle {
   
   class func dateToolsBundle() -> Bundle {
+    #if SWIFT_PACKAGE
+    let assetPath = Bundle.module.resourcePath!
+    #else
     let assetPath = Bundle(for: Constants.self).resourcePath!
+    #endif
     return Bundle(path: NSString(string: assetPath).appendingPathComponent("DateTools.bundle"))!
   }
 }
